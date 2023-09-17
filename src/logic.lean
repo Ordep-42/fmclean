@@ -315,13 +315,24 @@ end
 theorem curry_prop :
   ((P∧Q)→R) → (P→(Q→R))  :=
 begin
-  sorry,
+  intro h,
+  intro p,
+  intro q,
+  apply h,
+  split,
+  exact p,
+  exact q,
 end
 
 theorem uncurry_prop :
   (P→(Q→R)) → ((P∧Q)→R)  :=
 begin
-  sorry,
+  intro h,
+  intro hpq,
+  cases hpq with p q,
+  have hqr : Q -> R := h p,
+  apply hqr,
+  assumption,
 end
 
 
@@ -332,7 +343,8 @@ end
 theorem impl_refl :
   P → P  :=
 begin
-  sorry,
+  intro p,
+  exact p,
 end
 
 ------------------------------------------------
@@ -342,37 +354,57 @@ end
 theorem weaken_disj_right :
   P → (P∨Q)  :=
 begin
-  sorry,
+  intro p,
+  left,
+  assumption,
 end
 
 theorem weaken_disj_left :
   Q → (P∨Q)  :=
 begin
-  sorry,
+  intro q,
+  right,
+  assumption,
 end
 
 theorem weaken_conj_right :
   (P∧Q) → P  :=
 begin
-  sorry,
+  intro h,
+  cases h with p,
+  exact p,
 end
 
 theorem weaken_conj_left :
   (P∧Q) → Q  :=
 begin
-  sorry,
+  intro h,
+  cases h with p q,
+  exact q,
 end
 
 theorem conj_idempot :
   (P∧P) ↔ P :=
 begin
-  sorry,
+  split,
+  intro h,
+  cases h with p p',
+  assumption,
+  intro p,
+  split,
+  repeat {assumption},
 end
 
 theorem disj_idempot :
   (P∨P) ↔ P  :=
 begin
-  sorry,
+  split,
+  intro h,
+  cases h with p p,
+  repeat {assumption},
+  intro p,
+  right,
+  exact p,
 end
 
 end propositional
