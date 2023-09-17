@@ -193,7 +193,14 @@ end
 theorem conj_as_negdisj :
   P∧Q → ¬(¬P∨¬Q)  :=
 begin
-  sorry,
+  intro hpeq,
+  intro hnpvnq,
+  cases hpeq with p q,
+  cases hnpvnq with hnp hnq,
+  apply hnp,
+  assumption,
+  apply hnq,
+  assumption,
 end
 
 
@@ -204,6 +211,7 @@ end
 theorem demorgan_disj :
   ¬(P∨Q) → (¬P ∧ ¬Q)  :=
 begin
+  intro hnpvq,
   sorry,
 end
 
@@ -244,19 +252,53 @@ end
 theorem distr_conj_disj :
   P∧(Q∨R) → (P∧Q)∨(P∧R)  :=
 begin
-  sorry,
+  intro hpeqvr,
+  cases hpeqvr with p hqvr,
+  cases hqvr with q r,
+  left,
+  split,
+  assumption,
+  assumption,
+  right,
+  split,
+  assumption,
+  assumption,
 end
 
 theorem distr_conj_disj_converse :
   (P∧Q)∨(P∧R) → P∧(Q∨R)  :=
 begin
-  sorry,
+  intro h,
+  cases h,
+  cases h with p q,
+  split,
+  assumption,
+  left,
+  assumption,
+  cases h with p r,
+  split,
+  assumption,
+  right,
+  assumption,
 end
 
 theorem distr_disj_conj :
   P∨(Q∧R) → (P∨Q)∧(P∨R)  :=
 begin
-  sorry,
+  intro h,
+  split,
+  cases h with p hqer,
+  left,
+  assumption,
+  right,
+  cases hqer with q,
+  assumption,
+  cases h with p hqer,
+  left,
+  assumption,
+  right,
+  cases hqer with q r,
+  assumption,
 end
 
 theorem distr_disj_conj_converse :
