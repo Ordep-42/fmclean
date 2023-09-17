@@ -11,19 +11,37 @@ variables P Q R : Prop
 theorem doubleneg_intro :
   P → ¬¬P  :=
 begin
-  sorry,
+  intro P,
+  intro hp,
+  have boom : false := hp P,
+  assumption,
 end
 
 theorem doubleneg_elim :
   ¬¬P → P  :=
 begin
-  sorry,
+  by_cases P : P,
+  intro hnnp,
+  exact P,
+  intro hnnp,
+  have boom : false := hnnp P,
+  contradiction,
 end
 
 theorem doubleneg_law :
   ¬¬P ↔ P  :=
 begin
-  sorry,
+  split,
+  by_cases P,
+  intro hnnp,
+  exact h,
+  intro hnnp,
+  have boom : false := hnnp h,
+  contradiction,
+  intro P,
+  intro hp,
+  have boom : false := hp P,
+  exact boom,
 end
 
 ------------------------------------------------
@@ -33,13 +51,22 @@ end
 theorem disj_comm :
   (P ∨ Q) → (Q ∨ P)  :=
 begin
-  sorry,
+  intro hpq,
+  cases hpq,
+  right,
+  exact hpq,
+  left,
+  exact hpq,
 end
 
 theorem conj_comm :
   (P ∧ Q) → (Q ∧ P)  :=
 begin
-  sorry,
+  intro hpq,
+  cases hpq with P Q,
+  split,
+  exact Q,
+  exact P,
 end
 
 
@@ -50,13 +77,23 @@ end
 theorem impl_as_disj_converse :
   (¬P ∨ Q) → (P → Q)  :=
 begin
-  sorry,
+  intro hnpq,
+  intro P,
+  cases hnpq,
+  have boom : false := hnpq P,
+  contradiction,
+  assumption,
 end
 
 theorem disj_as_impl :
   (P ∨ Q) → (¬P → Q)  :=
 begin
-  sorry,
+  intro hpq,
+  intro hnp,
+  cases hpq with p q,
+  have boom : false := hnp p,
+  contradiction,
+  assumption,
 end
 
 
@@ -67,19 +104,43 @@ end
 theorem impl_as_contrapositive :
   (P → Q) → (¬Q → ¬P)  :=
 begin
-  sorry,
+  intro hpq,
+  intro hnq,
+  intro P,
+  have Q := hpq P,
+  have boom : false := hnq Q,
+  contradiction,
 end
 
 theorem impl_as_contrapositive_converse :
   (¬Q → ¬P) → (P → Q)  :=
 begin
-  sorry,
+  intro hnqnp,
+  intro p,
+  by_cases Q,
+  assumption,
+  have hnp : ¬P := hnqnp h,
+  have boom : false := hnp p,
+  contradiction,
 end
 
 theorem contrapositive_law :
   (P → Q) ↔ (¬Q → ¬P)  :=
 begin
-  sorry,
+  split,
+  intro hpq,
+  intro hnq,
+  intro p,
+  have Q : Q := hpq p,
+  have boom : false := hnq Q,
+  contradiction,
+  intro hnqnp,
+  intro p,
+  by_cases Q,
+  assumption,
+  have hnp : ¬P := hnqnp h,
+  have boom : false := hnp p,
+  contradiction,
 end
 
 
@@ -90,7 +151,14 @@ end
 theorem lem_irrefutable :
   ¬¬(P∨¬P)  :=
 begin
-  sorry,
+  intro nhpnp,
+  by_cases P,
+  apply nhpnp,
+  left,
+  assumption,
+  apply nhpnp,
+  right,
+  assumption,
 end
 
 
@@ -112,7 +180,14 @@ end
 theorem disj_as_negconj :
   P∨Q → ¬(¬P∧¬Q)  :=
 begin
-  sorry,
+  intro hpvq,
+  intro hnpenq,
+  cases hnpenq with hnp hnq,
+  cases hpvq,
+  apply hnp,
+  assumption,
+  apply hnq, 
+  assumption,
 end
 
 theorem conj_as_negdisj :
