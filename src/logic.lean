@@ -212,19 +212,45 @@ theorem demorgan_disj :
   ¬(P∨Q) → (¬P ∧ ¬Q)  :=
 begin
   intro hnpvq,
-  sorry,
+  split,
+  intro p,
+  apply hnpvq,
+  left,
+  exact p,
+  intro q,
+  apply hnpvq,
+  right,
+  exact q,
 end
 
 theorem demorgan_disj_converse :
   (¬P ∧ ¬Q) → ¬(P∨Q)  :=
 begin
-  sorry,
+  intro hnpenq,
+  intro hpvq,
+  cases hnpenq with hnp hnq,
+  cases hpvq with p q,
+  apply hnp,
+  exact p,
+  apply hnq,
+  exact q,
 end
 
 theorem demorgan_conj :
   ¬(P∧Q) → (¬Q ∨ ¬P)  :=
 begin
-  sorry,
+  intro hnpeq,
+  by_cases P,
+  left,
+  intro q,
+  have hpeq : (P ∧ Q),
+  split,
+  exact h,
+  exact q,
+  apply hnpeq,
+  exact hpeq,
+  right,
+  exact h,
 end
 
 theorem demorgan_conj_converse :
