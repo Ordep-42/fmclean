@@ -64,19 +64,22 @@
     },
     {
       "lean": "lemma one_mul (m : mynat) : 1 * m = m :=\n",
-      "editorText": "induction m with n hp,\nrw mul_zero,\nrefl,\n"
+      "isSolved": true,
+      "editorText": "induction m with n hp,\nrw mul_zero,\nrefl,\nrw mul_succ,\nrw hp,\nrw succ_eq_add_one,\nrefl,\n"
     },
     {
       "lean": "lemma mul_add (t a b : mynat) : t * (a + b) = t * a + t * b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction b with n hi,\nrw mul_zero,\nrepeat {rw add_zero},\n\nrw add_succ,\nrw mul_succ,\nrw hi,\nrw mul_succ,\nrw add_assoc,\nrefl,\n"
     },
     {
       "lean": "lemma mul_assoc (a b c : mynat) : (a * b) * c = a * (b * c) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction c with n hi,\nrepeat {rw mul_zero},\nrw mul_succ,\nrw hi,\nrw mul_succ,\nrw mul_add,\nrefl,\n"
     },
     {
       "lean": "lemma succ_mul (a b : mynat) : succ a * b = a * b + b :=\n",
-      "editorText": "sorry"
+      "editorText": "induction b with n hi,\nrepeat {rw mul_zero},\nrw add_zero,\nrefl,\n\nrw mul_succ,\nrw mul_succ,\nrw hi,\nrw add_succ,\nrw add_succ,\nrw succ_eq_add_one,\nrw succ_eq_add_one,\nrw add_assoc,\nrw add_comm a 1,"
     },
     {
       "lean": "lemma add_mul (a b t : mynat) : (a + b) * t = a * t + b * t :=\n",
@@ -289,17 +292,15 @@
     },
     {
       "lean": "theorem add_left_cancel (t a b : mynat) : t + a = t + b → a = b :=\n",
-      "isSolved": true,
-      "editorText": "rw add_comm,\nrw add_comm t b,\nexact add_right_cancel a t b,\n"
+      "editorText": ""
     },
     {
       "lean": "theorem add_right_cancel_iff (t a b : mynat) :  a + t = b + t ↔ a = b :=\n",
-      "isSolved": true,
-      "editorText": "split,\nexact add_right_cancel a t b,\nintro h,\ninduction t with n hi,\nrepeat {rw add_zero},\nexact h,\nrepeat {rw add_succ},\nrw hi,\nrefl,"
+      "editorText": "sorry"
     },
     {
       "lean": "lemma eq_zero_of_add_right_eq_self {a b : mynat} : a + b = a → b = 0 :=\n",
-      "editorText": "intro h,\n"
+      "editorText": "sorry"
     },
     {
       "lean": "theorem succ_ne_zero (a : mynat) : succ a ≠ 0 := \n",
