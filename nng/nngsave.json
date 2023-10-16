@@ -304,35 +304,42 @@
     },
     {
       "lean": "theorem add_left_cancel (t a b : mynat) : t + a = t + b → a = b :=\n",
-      "editorText": ""
+      "isSolved": true,
+      "editorText": "intro h,\nrw add_comm t a at h,\nrw add_comm t b at h,\napply add_right_cancel a t b,\nexact h,\n"
     },
     {
       "lean": "theorem add_right_cancel_iff (t a b : mynat) :  a + t = b + t ↔ a = b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "split,\nintro ht,\napply add_right_cancel a t b,\nexact ht,\n\nintro hab,\nrw hab,\nrefl,\n"
     },
     {
       "lean": "lemma eq_zero_of_add_right_eq_self {a b : mynat} : a + b = a → b = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\nrw ← add_zero a at h,\nrw add_assoc a 0 b at h,\nrw zero_add b at h,\napply add_left_cancel a b 0,\nexact h,\n"
     },
     {
       "lean": "theorem succ_ne_zero (a : mynat) : succ a ≠ 0 := \n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "symmetry,\nexact zero_ne_succ a,\n"
     },
     {
       "lean": "lemma add_left_eq_zero {{a b : mynat}} (H : a + b = 0) : b = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases b with n,\nrefl,\nrw add_succ at H,\nexfalso,\napply succ_ne_zero (a + n),\nexact H,\n"
     },
     {
       "lean": "lemma add_right_eq_zero {a b : mynat} : a + b = 0 → a = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw add_comm a b,\nintro hba,\nhave ha := add_left_eq_zero(hba),\nexact ha,"
     },
     {
       "lean": "theorem add_one_eq_succ (d : mynat) : d + 1 = succ d :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw succ_eq_add_one,\nrefl,\n"
     },
     {
       "lean": "lemma ne_succ_self (n : mynat) : n ≠ succ n :=\n",
-      "editorText": "sorry"
+      "editorText": "intro h,\nrw succ_eq_add_one at h,\n\n"
     },
     {
       "lean": "theorem mul_pos (a b : mynat) : a ≠ 0 → b ≠ 0 → a * b ≠ 0 :=\n",
