@@ -339,7 +339,8 @@
     },
     {
       "lean": "lemma ne_succ_self (n : mynat) : n ≠ succ n :=\n",
-      "editorText": "intro h,\nrw succ_eq_add_one at h,\n\n"
+      "isSolved": true,
+      "editorText": "intro h,\nrw succ_eq_add_one at h,\nrw ← add_zero n at h,\nrw add_assoc n 0 1 at h,\nrw zero_add 1 at h,\napply zero_ne_succ 0,\nrw succ_eq_add_one,\nrw zero_add,\napply add_left_cancel n 0 1,\nexact h,\n"
     },
     {
       "lean": "theorem mul_pos (a b : mynat) : a ≠ 0 → b ≠ 0 → a * b ≠ 0 :=\n",
