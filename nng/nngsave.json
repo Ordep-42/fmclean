@@ -399,11 +399,12 @@
     },
     {
       "lean": "lemma succ_le_succ (a b : mynat) (h : a ≤ b) : succ a ≤ succ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases h with k h,\nrw h,\nuse k,\nrw succ_add,\nrefl,\n"
     },
     {
       "lean": "theorem le_total (a b : mynat) : a ≤ b ∨ b ≤ a :=\n",
-      "editorText": "sorry"
+      "editorText": "revert a,\ninduction b with k hi,\nintro a,\nright,\nexact zero_le a,\nintro a,\ncases a with m hm,\nleft,\nexact zero_le (succ k),\n"
     },
     {
       "lean": "lemma le_succ_self (a : mynat) : a ≤ succ a :=\n",
